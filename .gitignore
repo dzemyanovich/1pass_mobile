@@ -1,0 +1,6 @@
+.idea/
+
+classpass_mobile/android/app/src/main/assets/index.android.bundle
+firebase-creds.ts
+GoogleService-Info.plist
+google-services.json

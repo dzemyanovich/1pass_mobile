@@ -1,0 +1,11 @@
+export const SET_USER_DATA = 'SET_USER_DATA';
+export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
+export const RESET_USER_DATA = 'RESET_USER_DATA';
+export const ADD_BOOKING = 'ADD_BOOKING';
+export const CANCEL_BOOKING = 'CANCEL_BOOKING';
+export const CONFIRM_VISIT = 'CONFIRM_VISIT';
+export const SET_FIREBASE_TOKEN = 'SET_FIREBASE_TOKEN';
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const HIDE_ALERT = 'HIDE_ALERT';
+export const SHOW_LOADER = 'SHOW_LOADER';
+export const HIDE_LOADER = 'HIDE_LOADER';

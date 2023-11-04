@@ -27,7 +27,8 @@ ios/.xcode.env.local
 build/
 .idea
 .gradle
-local.properties
+# commented out because local.properties file is required for @notifee/react-native
+# local.properties
 *.iml
 *.hprof
 .cxx/

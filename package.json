@@ -1,0 +1,13 @@
+{
+  "name": "classpass",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@gitlab.com:aliaksei.dzemyanovich/classpass.git",
+  "author": "Aliaksei Dzemyanovich <aliaksei.dzemyanovich@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "a": "cd classpass_mobile && yarn a",
+    "i": "cd classpass_mobile && yarn i",
+    "pod": "cd classpass_mobile && yarn pod"
+  }
+}
