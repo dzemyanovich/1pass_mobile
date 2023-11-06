@@ -1,12 +1,12 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
+import { hasDynamicIsland, hasNotch } from 'react-native-device-info';
 
 import { iOS } from '../utils/utils';
 
 export default function PageWrapper({ children, isNavigationTab = false, alignCenter = true }: PageWrapperProps) {
   const margin = 10;
-  const marginTop = isNavigationTab && iOS() && (DeviceInfo.hasDynamicIsland() || DeviceInfo.hasNotch())
+  const marginTop = isNavigationTab && iOS() && (hasDynamicIsland() || hasNotch())
     ? 60
     : margin;
 
