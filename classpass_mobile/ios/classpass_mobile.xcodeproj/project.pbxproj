@@ -14,6 +14,7 @@
 		4A77EE181F291C8B7C070F0A /* Pods_classpass_mobile_classpass_mobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159734A743BF5156C6E7CCC4 /* Pods_classpass_mobile_classpass_mobileTests.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		98B15EBE96C8FC4307EDC9F7 /* Pods_classpass_mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B877C4475F8B4C9E4BBBC6A9 /* Pods_classpass_mobile.framework */; };
+		F82196CC2AFCF103009C491D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82196CB2AFCF103009C491D /* Assets.xcassets */; };
 		F82C12ED2AE91E2E00E0A555 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F82C12DA2AE91E2D00E0A555 /* Fontisto.ttf */; };
 		F82C12EE2AE91E2E00E0A555 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F82C12DB2AE91E2D00E0A555 /* Octicons.ttf */; };
 		F82C12EF2AE91E2E00E0A555 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F82C12DC2AE91E2D00E0A555 /* Feather.ttf */; };
@@ -64,6 +65,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-classpass_mobile-classpass_mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-classpass_mobile-classpass_mobileTests.release.xcconfig"; path = "Target Support Files/Pods-classpass_mobile-classpass_mobileTests/Pods-classpass_mobile-classpass_mobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		B877C4475F8B4C9E4BBBC6A9 /* Pods_classpass_mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_classpass_mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F82196CB2AFCF103009C491D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F82C12DA2AE91E2D00E0A555 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		F82C12DB2AE91E2D00E0A555 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		F82C12DC2AE91E2D00E0A555 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F82196CB2AFCF103009C491D /* Assets.xcassets */,
 				F82C13042AEA55A200E0A555 /* GoogleService-Info.plist */,
 				F82C12D92AE91E2D00E0A555 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* classpass_mobile */,
@@ -318,6 +321,7 @@
 				F82C12ED2AE91E2E00E0A555 /* Fontisto.ttf in Resources */,
 				F82C12F22AE91E2E00E0A555 /* FontAwesome5_Brands.ttf in Resources */,
 				F82C12F62AE91E2E00E0A555 /* Ionicons.ttf in Resources */,
+				F82196CC2AFCF103009C491D /* Assets.xcassets in Resources */,
 				F82C12F72AE91E2E00E0A555 /* FontAwesome5_Solid.ttf in Resources */,
 				F82C12F12AE91E2E00E0A555 /* Entypo.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
@@ -589,6 +593,7 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-classpass_mobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = classpass_mobile/classpass_mobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
@@ -618,6 +623,7 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-classpass_mobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = classpass_mobile/classpass_mobile.entitlements;
 				CURRENT_PROJECT_VERSION = 1;

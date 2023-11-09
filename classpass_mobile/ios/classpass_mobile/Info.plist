@@ -30,9 +30,11 @@
 		<dict>
 			<key>localhost</key>
 			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
+				<!-- required for iOS build (AppStore) -->
 				<key>NSAllowsArbitraryLoads</key>
+				<false/>
+				<!-- required for iOS build (AppStore) -->
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<false/>
 			</dict>
 		</dict>
@@ -64,7 +66,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>LaunchScreen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -77,5 +79,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!-- required for iOS build (AppStore) -->
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 </dict>
 </plist>
