@@ -21,10 +21,18 @@ import { iOS } from './src/utils/utils';
 import AuthVerifyCode from './src/components/pages/auth-verify-code';
 import CompleteSignUp from './src/components/pages/complete-sign-up';
 import { initFirebase, sendLocalNotification } from './src/utils/push-notifications';
-import { CONFIRM_VISIT, SET_FIREBASE_TOKEN, SHOW_ALERT } from './src/redux/action-types';
+import { CONFIRM_VISIT, HIDE_LOADER, SET_FIREBASE_TOKEN, SET_USER_DATA, SHOW_ALERT } from './src/redux/action-types';
 import Loader from './src/components/loader';
 import PageWrapper from './src/components/page-wrapper';
-import type { NavigationProps, RootStackParamList, SignUpProps, SportObjectProps, VerifyCodeProps } from './custom-types';
+import { requestLocationPermission } from './src/utils/location-permissions';
+import { getUserData } from './src/api';
+import type {
+  NavigationProps,
+  RootStackParamList,
+  SignUpProps,
+  SportObjectProps,
+  VerifyCodeProps,
+} from './custom-types';
 
 // supress warn WARN Sending `onAnimatedValueUpdate` with no listeners registered
 const av = new Animated.Value(0);
@@ -51,44 +59,50 @@ function ProfileIcon({ color, size }: { color: number | ColorValue | undefined, 
   );
 }
 
+// todo: do not use any
+function TabBar({ navigation, state, descriptors, insets }: any) {
+  return (
+    <BottomNavigation.Bar
+      navigationState={state}
+      safeAreaInsets={insets}
+      // todo: do not use any
+      onTabPress={({ route, preventDefault }: any) => {
+        const event = navigation.emit({
+          type: 'tabPress',
+          target: route.key,
+          canPreventDefault: true,
+        });
+
+        if (event.defaultPrevented) {
+          preventDefault();
+        } else {
+          navigation.dispatch({
+            ...CommonActions.navigate(route.name, route.params),
+            target: state.key,
+          });
+        }
+      }}
+      renderIcon={({ route, focused, color }) => {
+        const { options } = descriptors[route.key];
+        if (options.tabBarIcon) {
+          return options.tabBarIcon({ focused, color, size: 24 });
+        }
+
+        return null;
+      }}
+      getLabelText={({ route }) => {
+        const { title } = descriptors[route.key].options;
+        return title;
+      }}
+    />
+  );
+}
+
 function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }}
-      tabBar={({ navigation, state, descriptors, insets }) => (
-        <BottomNavigation.Bar
-          navigationState={state}
-          safeAreaInsets={insets}
-          onTabPress={({ route, preventDefault }) => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
-            });
-
-            if (event.defaultPrevented) {
-              preventDefault();
-            } else {
-              navigation.dispatch({
-                ...CommonActions.navigate(route.name, route.params),
-                target: state.key,
-              });
-            }
-          }}
-          renderIcon={({ route, focused, color }) => {
-            const { options } = descriptors[route.key];
-            if (options.tabBarIcon) {
-              return options.tabBarIcon({ focused, color, size: 24 });
-            }
-
-            return null;
-          }}
-          getLabelText={({ route }) => {
-            const { title } = descriptors[route.key].options;
-            return title;
-          }}
-        />
-      )}
+      tabBar={TabBar}
     >
       <Tab.Screen
         name="map"
@@ -160,7 +174,7 @@ function CompleteSignUpPage(props: SignUpProps) {
 
 function BookingsTabPage(props: NavigationProps) {
   return (
-    <PageWrapper isNavigationTab={true} alignCenter={false}>
+    <PageWrapper isNavigationTab alignCenter={false}>
       <BookingsTab {...props} />
     </PageWrapper>
   );
@@ -168,7 +182,7 @@ function BookingsTabPage(props: NavigationProps) {
 
 function ProfileTabPage(props: NavigationProps) {
   return (
-    <PageWrapper isNavigationTab={true} alignCenter={false}>
+    <PageWrapper isNavigationTab alignCenter={false}>
       <ProfileTab {...props} />
     </PageWrapper>
   );
@@ -198,7 +212,7 @@ function App() {
         type: CONFIRM_VISIT,
         payload: remoteMessage.data as ConfirmVisitPayload,
       });
-    };
+    }
 
     (async () => {
       const firebaseToken = await initFirebase(onFirebaseMessage);
@@ -206,6 +220,17 @@ function App() {
         type: SET_FIREBASE_TOKEN,
         payload: firebaseToken,
       });
+      await requestLocationPermission();
+
+      const userDataResponse = await getUserData();
+      dispatch({
+        type: SET_USER_DATA,
+        payload: userDataResponse.data as UserData,
+      });
+      dispatch({
+        type: HIDE_LOADER,
+      });
+      console.log('### user data obtained');
     })();
   });
 
@@ -264,6 +289,8 @@ function App() {
   );
 }
 
+// todo: reload app in simulator does not work (issues with debug vs production)
+// todo: after deletion of application in iOS, user is still signed in
 export default () => {
   return (
     <Provider store={store}>

@@ -51,7 +51,7 @@ export async function initFirebase(onFirebaseMessage: FirebaseMessageFunc): Prom
     console.log('Message handled in the background!', remoteMessage);
   });
 
-  initPushNotifications();
+  await initPushNotifications();
 
   return firebaseToken;
 }

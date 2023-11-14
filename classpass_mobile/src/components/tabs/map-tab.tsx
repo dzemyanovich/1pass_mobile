@@ -1,15 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Text } from 'react-native-paper';
-import { StyleSheet, Dimensions, PermissionsAndroid } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
-import { getUserData } from '../../api';
 import { DEFAULT_LAT, DEFAULT_LONG, MAP_ZOOM_DELTA } from '../../../app.json';
-import { HIDE_LOADER, SET_USER_DATA } from '../../redux/action-types';
 import type { NavigationProps } from '../../../custom-types';
-import { iOS } from '../../utils/utils';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -34,6 +31,7 @@ export default function MapTab({ navigation }: NavigationProps) {
   const mapRef = useRef<MapView>(null);
   const dispatch = useDispatch();
   const { sportObjects }: UserData = useSelector((state: ReduxState) => state.userData);
+  const loading: boolean = useSelector((state: ReduxState) => state.loading);
 
   function animateToRegion(latitude: number, longitude: number): void {
     if (!mapRef.current) {
@@ -49,32 +47,13 @@ export default function MapTab({ navigation }: NavigationProps) {
     }
   }
 
-  async function requestLocationPermission() {
-    if (iOS()) {
-      Geolocation.requestAuthorization();
-    } else {
-      try {
-        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use locations');
-        } else {
-          console.log('Location permission denied');
-        }
-      } catch (err) {
-        console.warn(err);
-      }
+  function onMapReady() {
+    console.log('### onMapReady');
+    if (loading) {
+      return;
     }
-  }
 
-  async function onMapReady(): Promise<void> {
-    await requestLocationPermission();
-
-    const userDataResponse = await getUserData();
-    dispatch({
-      type: SET_USER_DATA,
-      payload: userDataResponse.data as UserData,
-    });
-
+    console.log('#### getCurrentPosition');
     Geolocation.getCurrentPosition(
       async (position) => {
         console.log('#### CURRENT LOCATION OBTAINED #####');
@@ -86,21 +65,17 @@ export default function MapTab({ navigation }: NavigationProps) {
         });
 
         animateToRegion(latitude, longitude);
-
-        dispatch({
-          type: HIDE_LOADER,
-        });
       },
       (error) => {
         // eslint-disable-next-line no-console
         console.log(`erorr code: ${error.code}`, error.message);
-
-        dispatch({
-          type: HIDE_LOADER,
-        });
       },
       { enableHighAccuracy: false, timeout: 5000 },
     );
+  }
+
+  if (loading) {
+    return null;
   }
 
   return (

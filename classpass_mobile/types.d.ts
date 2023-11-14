@@ -134,4 +134,5 @@ type ConfirmVisitPayload = {
   visitTime: string;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type FirebaseMessageFunc = (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => any;
