@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Text } from 'react-native-paper';
 import { StyleSheet, Dimensions } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
@@ -29,7 +29,6 @@ export default function MapTab({ navigation }: NavigationProps) {
     longitude: DEFAULT_LONG,
   });
   const mapRef = useRef<MapView>(null);
-  const dispatch = useDispatch();
   const { sportObjects }: UserData = useSelector((state: ReduxState) => state.userData);
   const loading: boolean = useSelector((state: ReduxState) => state.loading);
 

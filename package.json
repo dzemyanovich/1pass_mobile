@@ -10,6 +10,7 @@
     "i": "cd classpass_mobile && yarn i",
     "ix": "cd classpass_mobile && yarn ix",
     "pod": "cd classpass_mobile && yarn pod",
-    "apk-file": "cd classpass_mobile && yarn apk-file"
+    "apk-file": "cd classpass_mobile && yarn apk-file",
+    "lint": "cd classpass_mobile && yarn lint"
   }
 }

@@ -59,14 +59,15 @@ function ProfileIcon({ color, size }: { color: number | ColorValue | undefined, 
   );
 }
 
-// todo: do not use any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function TabBar({ navigation, state, descriptors, insets }: any) {
   return (
     <BottomNavigation.Bar
       navigationState={state}
       safeAreaInsets={insets}
-      // todo: do not use any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onTabPress={({ route, preventDefault }: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         const event = navigation.emit({
           type: 'tabPress',
           target: route.key,
@@ -74,9 +75,12 @@ function TabBar({ navigation, state, descriptors, insets }: any) {
         });
 
         if (event.defaultPrevented) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           preventDefault();
         } else {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
           navigation.dispatch({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             ...CommonActions.navigate(route.name, route.params),
             target: state.key,
           });
@@ -85,6 +89,7 @@ function TabBar({ navigation, state, descriptors, insets }: any) {
       renderIcon={({ route, focused, color }) => {
         const { options } = descriptors[route.key];
         if (options.tabBarIcon) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
           return options.tabBarIcon({ focused, color, size: 24 });
         }
 
@@ -92,6 +97,7 @@ function TabBar({ navigation, state, descriptors, insets }: any) {
       }}
       getLabelText={({ route }) => {
         const { title } = descriptors[route.key].options;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return title;
       }}
     />
@@ -135,6 +141,7 @@ function HomeTabs() {
 function SportObjectPage(props: SportObjectProps) {
   return (
     <PageWrapper alignCenter={false}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <SportObject {...props} />
     </PageWrapper>
   );
@@ -143,6 +150,7 @@ function SportObjectPage(props: SportObjectProps) {
 function SignInPage(props: NavigationProps) {
   return (
     <PageWrapper>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <SignIn {...props} />
     </PageWrapper>
   );
@@ -151,6 +159,7 @@ function SignInPage(props: NavigationProps) {
 function SignUpPage(props: NavigationProps) {
   return (
     <PageWrapper>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <SignUp {...props} />
     </PageWrapper>
   );
@@ -159,6 +168,7 @@ function SignUpPage(props: NavigationProps) {
 function VerifyCodePage(props: VerifyCodeProps) {
   return (
     <PageWrapper>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <AuthVerifyCode {...props} />
     </PageWrapper>
   );
@@ -167,6 +177,7 @@ function VerifyCodePage(props: VerifyCodeProps) {
 function CompleteSignUpPage(props: SignUpProps) {
   return (
     <PageWrapper>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <CompleteSignUp {...props} />
     </PageWrapper>
   );
@@ -175,6 +186,7 @@ function CompleteSignUpPage(props: SignUpProps) {
 function BookingsTabPage(props: NavigationProps) {
   return (
     <PageWrapper isNavigationTab alignCenter={false}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <BookingsTab {...props} />
     </PageWrapper>
   );
@@ -183,6 +195,7 @@ function BookingsTabPage(props: NavigationProps) {
 function ProfileTabPage(props: NavigationProps) {
   return (
     <PageWrapper isNavigationTab alignCenter={false}>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <ProfileTab {...props} />
     </PageWrapper>
   );
@@ -289,16 +302,14 @@ function App() {
   );
 }
 
-// todo: reload app in simulator does not work (issues with debug vs production)
 // todo: after deletion of application in iOS, user is still signed in
-export default () => {
-  return (
-    <Provider store={store}>
-      <PaperProvider>
-        <Loader />
-        <Alert />
-        <App />
-      </PaperProvider>
-    </Provider>
-  );
-};
+// eslint-disable-next-line react/function-component-definition
+export default () => (
+  <Provider store={store}>
+    <PaperProvider>
+      <Loader />
+      <Alert />
+      <App />
+    </PaperProvider>
+  </Provider>
+);
