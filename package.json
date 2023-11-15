@@ -8,6 +8,8 @@
   "scripts": {
     "a": "cd classpass_mobile && yarn a",
     "i": "cd classpass_mobile && yarn i",
-    "pod": "cd classpass_mobile && yarn pod"
+    "ix": "cd classpass_mobile && yarn ix",
+    "pod": "cd classpass_mobile && yarn pod",
+    "apk-file": "cd classpass_mobile && yarn apk-file"
   }
 }
