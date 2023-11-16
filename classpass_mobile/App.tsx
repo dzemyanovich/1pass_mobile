@@ -304,7 +304,8 @@ function App() {
 
 // todo: application is unreadable if user uses dark theme (reproducible on iOS)
 // todo: after deletion of application in iOS, user is still signed in
-// todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) -> admin portal -> confirm visit -> notification is sent but redux state is not updated
+// todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) ->
+// -> admin portal -> confirm visit -> notification is sent but redux state is not updated
 // eslint-disable-next-line react/function-component-definition
 export default () => (
   <Provider store={store}>
