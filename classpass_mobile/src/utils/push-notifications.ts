@@ -44,11 +44,11 @@ export async function initFirebase(onFirebaseMessage: FirebaseMessageFunc): Prom
   }
 
   const firebaseToken = await messaging().getToken();
-  console.log('Firebase Token', firebaseToken);
+  console.log('### Firebase Token', firebaseToken);
 
   messaging().onMessage(onFirebaseMessage);
   messaging().setBackgroundMessageHandler(async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
-    console.log('Message handled in the background!', remoteMessage);
+    console.log('### Message handled in the background!', remoteMessage);
   });
 
   await initPushNotifications();

@@ -206,7 +206,7 @@ function App() {
 
   useEffect(() => {
     async function onFirebaseMessage(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
-      console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      console.log('### new Firebase message arrived:', JSON.stringify(remoteMessage));
       if (remoteMessage.notification) {
         const title = remoteMessage.notification?.title as string;
         const body = remoteMessage.notification?.body as string;
@@ -302,7 +302,9 @@ function App() {
   );
 }
 
+// todo: application is unreadable if user uses dark theme (reproducible on iOS)
 // todo: after deletion of application in iOS, user is still signed in
+// todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) -> admin portal -> confirm visit -> notification is sent but redux state is not updated
 // eslint-disable-next-line react/function-component-definition
 export default () => (
   <Provider store={store}>

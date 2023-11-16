@@ -30,12 +30,11 @@ export default function MapTab({ navigation }: NavigationProps) {
   });
   const mapRef = useRef<MapView>(null);
   const { sportObjects }: UserData = useSelector((state: ReduxState) => state.userData);
-  const loading: boolean = useSelector((state: ReduxState) => state.loading);
 
   function animateToRegion(latitude: number, longitude: number): void {
     if (!mapRef.current) {
       // eslint-disable-next-line no-console
-      console.error('mapRef.current is undefined');
+      console.error('### mapRef.current is undefined');
     } else {
       mapRef.current.animateToRegion({
         latitude,
@@ -47,15 +46,10 @@ export default function MapTab({ navigation }: NavigationProps) {
   }
 
   function onMapReady() {
-    console.log('### onMapReady');
-    if (loading) {
-      return;
-    }
-
-    console.log('#### getCurrentPosition');
+    console.log('### getCurrentPosition');
     Geolocation.getCurrentPosition(
       async (position) => {
-        console.log('#### CURRENT LOCATION OBTAINED #####');
+        console.log('### current location obtained');
         const { latitude, longitude } = position.coords;
 
         setUserCoords({
@@ -67,13 +61,15 @@ export default function MapTab({ navigation }: NavigationProps) {
       },
       (error) => {
         // eslint-disable-next-line no-console
-        console.log(`erorr code: ${error.code}`, error.message);
+        console.log(`### erorr code: ${error.code}`, error.message);
       },
       { enableHighAccuracy: false, timeout: 5000 },
     );
   }
 
-  if (loading) {
+  // todo: do we need this check???
+  if (!sportObjects.length) {
+    console.log('### sportObjects.length = 0')
     return null;
   }
 

@@ -60,9 +60,9 @@ export async function registerFirebaseToken(firebaseToken: string): Promise<void
   const registerTokenResponse: FirebaseResponse = await post(`${API_URL}/register-firebase-token`, firebaseRequest);
 
   if (!registerTokenResponse.success) {
-    console.error('error occurred while registering firebase token');
+    console.error('### error occurred while registering firebase token');
   } else {
-    console.log('firebase token successfully registed on back-end');
+    console.log('### firebase token successfully registed on back-end');
   }
 }
 
@@ -81,8 +81,8 @@ export async function deleteFirebaseToken(firebaseToken: string): Promise<void> 
   const deleteTokenResponse: FirebaseResponse = await post(`${API_URL}/delete-firebase-token`, firebaseRequest);
 
   if (!deleteTokenResponse.success) {
-    console.error('error occurred while deleting firebase token');
+    console.error('### error occurred while deleting firebase token');
   } else {
-    console.log('firebase token successfully deleted on back-end');
+    console.log('### firebase token successfully deleted on back-end');
   }
 }
