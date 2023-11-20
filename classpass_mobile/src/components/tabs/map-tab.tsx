@@ -67,7 +67,6 @@ export default function MapTab({ navigation }: NavigationProps) {
     );
   }
 
-  // todo: do we need this check???
   if (!sportObjects.length) {
     console.log('### sportObjects.length = 0');
     return null;
