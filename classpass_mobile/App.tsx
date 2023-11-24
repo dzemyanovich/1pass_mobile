@@ -20,7 +20,7 @@ import SignUp from './src/components/pages/sign-up';
 import { iOS } from './src/utils/utils';
 import AuthVerifyCode from './src/components/pages/auth-verify-code';
 import CompleteSignUp from './src/components/pages/complete-sign-up';
-import { initFirebase, sendLocalNotification } from './src/utils/push-notifications';
+import { initFirebase, sendLocalNotification, initPushNotifications } from './src/utils/push-notifications';
 import { CONFIRM_VISIT, HIDE_LOADER, SET_FIREBASE_TOKEN, SET_USER_DATA, SHOW_ALERT } from './src/redux/action-types';
 import Loader from './src/components/loader';
 import PageWrapper from './src/components/page-wrapper';
@@ -228,6 +228,7 @@ function App() {
     }
 
     (async () => {
+      await initPushNotifications();
       const firebaseToken = await initFirebase(onFirebaseMessage);
       dispatch({
         type: SET_FIREBASE_TOKEN,

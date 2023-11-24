@@ -8,7 +8,7 @@ import firebaseCreds from './firebase-creds';
 const androidChannelId = 'default';
 let createdChannelId: string;
 
-async function initPushNotifications() {
+export async function initPushNotifications() {
   if (iOS()) {
     await notifee.requestPermission();
   }
@@ -50,8 +50,6 @@ export async function initFirebase(onFirebaseMessage: FirebaseMessageFunc): Prom
   messaging().setBackgroundMessageHandler(async (remoteMessage: FirebaseMessagingTypes.RemoteMessage) => {
     console.log('### Message handled in the background!', remoteMessage);
   });
-
-  await initPushNotifications();
 
   return firebaseToken;
 }
