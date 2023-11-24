@@ -1,6 +1,6 @@
 {
-  "name": "classpass_mobile",
-  "displayName": "classpass_mobile",
+  "name": "1pass",
+  "displayName": "1pass",
   "API_URL": "https://uu3xj2zdx6.execute-api.eu-central-1.amazonaws.com/dev1",
   "DEFAULT_LAT": 53.893009,
   "DEFAULT_LONG": 27.567444,

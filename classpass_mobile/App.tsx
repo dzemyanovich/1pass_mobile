@@ -303,6 +303,8 @@ function App() {
   );
 }
 
+// todo: yarn apk-file -> use 'assembleRelease' instead of 'assembleDebug'
+// todo: text fields are not visible while sign up because keyboard covers them
 // todo: application is unreadable if user uses dark theme (reproducible on iOS)
 // todo: after deletion of application in iOS, user is still signed in
 // todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) ->

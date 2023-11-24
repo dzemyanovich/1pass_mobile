@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "classpass_mobile";
+    return "1pass";
   }
 
   /**

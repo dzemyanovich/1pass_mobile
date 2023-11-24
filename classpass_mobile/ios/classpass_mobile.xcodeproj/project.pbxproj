@@ -600,6 +600,7 @@
 				DEVELOPMENT_TEAM = 3NPDXN3PQX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = classpass_mobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = 1pass;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,6 +631,7 @@
 				DEVELOPMENT_TEAM = 3NPDXN3PQX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = classpass_mobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = 1pass;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -724,10 +726,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -805,10 +804,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
