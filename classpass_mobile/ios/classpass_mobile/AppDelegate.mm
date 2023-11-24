@@ -18,7 +18,7 @@
   // required for react-native-maps
   [GMSServices provideAPIKey:@"AIzaSyCSvmCLNxBWDrNHaTOaLkFcL6Alrw7tUtQ"];
 
-  self.moduleName = @"classpass_mobile";
+  self.moduleName = @"1pass";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
