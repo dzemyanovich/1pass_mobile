@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { Animated } from 'react-native';
-import { BottomNavigation, PaperProvider } from 'react-native-paper';
+import { BottomNavigation, PaperProvider, MD3LightTheme } from 'react-native-paper';
 import { NavigationContainer, CommonActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -305,17 +305,17 @@ function App() {
 
 // todo: yarn apk-file -> use 'assembleRelease' instead of 'assembleDebug'
 // todo: text fields are not visible while sign up because keyboard covers them
-// todo: application is unreadable if user uses dark theme (reproducible on iOS)
 // todo: after deletion of application in iOS, user is still signed in
 // todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) ->
 // -> admin portal -> confirm visit -> notification is sent but redux state is not updated
-// eslint-disable-next-line react/function-component-definition
-export default () => (
-  <Provider store={store}>
-    <PaperProvider>
-      <Loader />
-      <Alert />
-      <App />
-    </PaperProvider>
-  </Provider>
-);
+export default function OnePassApp() {
+  return (
+    <Provider store={store}>
+      <PaperProvider theme={MD3LightTheme}>
+        <Loader />
+        <Alert />
+        <App />
+      </PaperProvider>
+    </Provider>
+  );
+}
