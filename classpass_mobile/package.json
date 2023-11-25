@@ -1,6 +1,6 @@
 {
-  "name": "classpass_mobile",
-  "version": "0.0.1",
+  "name": "1pass",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "run-android": "react-native run-android",
