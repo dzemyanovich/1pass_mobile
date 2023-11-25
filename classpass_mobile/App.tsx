@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import type { ColorValue } from 'react-native';
 import type { FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import { MMKVLoader, useMMKVStorage } from 'react-native-mmkv-storage';
 
 import store from './src/redux/store';
 import MapTab from './src/components/tabs/map-tab';
@@ -26,6 +27,7 @@ import Loader from './src/components/loader';
 import PageWrapper from './src/components/page-wrapper';
 import { requestLocationPermission } from './src/utils/location-permissions';
 import { getUserData } from './src/api';
+import { clearUserToken } from './src/secure-store-manager';
 import type {
   NavigationProps,
   RootStackParamList,
@@ -40,6 +42,8 @@ av.addListener(() => { });
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
+
+const storage = new MMKVLoader().initialize();
 
 function MapIcon({ color, size }: { color: number | ColorValue | undefined, size: number | undefined }) {
   return (
@@ -305,10 +309,20 @@ function App() {
 
 // todo: yarn apk-file -> use 'assembleRelease' instead of 'assembleDebug'
 // todo: text fields are not visible while sign up because keyboard covers them
-// todo: after deletion of application in iOS, user is still signed in
 // todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) ->
 // -> admin portal -> confirm visit -> notification is sent but redux state is not updated
 export default function OnePassApp() {
+  const [hasLaunched, setHasLaunched] = useMMKVStorage('hasLaunched', storage, false);
+
+  useEffect(() => {
+    (async () => {
+      if (!hasLaunched) {
+        setHasLaunched(true);
+        await clearUserToken();
+      }
+    })();
+  });
+
   return (
     <Provider store={store}>
       <PaperProvider theme={MD3LightTheme}>
