@@ -308,9 +308,6 @@ function App() {
 }
 
 // todo: yarn apk-file -> use 'assembleRelease' instead of 'assembleDebug'
-// todo: text fields are not visible while sign up because keyboard covers them
-// todo: ios -> open app -> book any sport object -> switch to Chrome (do not close 1pass mobile app) ->
-// -> admin portal -> confirm visit -> notification is sent but redux state is not updated
 export default function OnePassApp() {
   const [hasLaunched, setHasLaunched] = useMMKVStorage('hasLaunched', storage, false);
 
