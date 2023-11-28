@@ -307,7 +307,6 @@ function App() {
   );
 }
 
-// todo: yarn apk-file -> use 'assembleRelease' instead of 'assembleDebug'
 export default function OnePassApp() {
   const [hasLaunched, setHasLaunched] = useMMKVStorage('hasLaunched', storage, false);
 

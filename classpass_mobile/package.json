@@ -23,7 +23,7 @@
     "clean-a": "cd android && ./gradlew clean",
     "clean-i": "cd ios && rm -rf build && xcodebuild clean",
     "clean": "yarn clean-y && yarn clean-pod && yarn pod-update && yarn clean-a && yarn clean-i",
-    "apk-file": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && open -R app/build/outputs/apk/debug/app-debug.apk",
+    "apk-file": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && rm -rf android/app/src/main/res/drawable-* && rm -rf android/app/src/main/res/raw/* && cd android && ./gradlew assembleRelease && open -R app/build/outputs/apk/release/app-release.apk",
     "app-file": "react-native run-ios --mode=Release && open /Users/aliaksei_dzemyanovich/Library/Developer/Xcode/DerivedData/",
     "pod-hermes": "cd ios && pod update hermes-engine --no-repo-update"
   },
