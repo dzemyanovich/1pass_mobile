@@ -4,7 +4,7 @@ import { Button, TextInput } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 
 import { getErrorMessages } from '../../utils/utils';
-import { completeSignUp, registerFirebaseToken } from '../../api';
+import { completeSignUp } from '../../api';
 import styles from '../../utils/styles';
 import { HIDE_LOADER, SHOW_ALERT, SHOW_LOADER, UPDATE_USER_DATA } from '../../redux/action-types';
 import { setUserToken } from '../../secure-store-manager';
@@ -45,6 +45,7 @@ export default function CompleteSignUp({ route, navigation }: SignUpProps) {
       confirmEmail,
       password,
       confirmPassword,
+      firebaseToken,
     });
 
     if (!response.success) {
@@ -73,7 +74,6 @@ export default function CompleteSignUp({ route, navigation }: SignUpProps) {
         type: UPDATE_USER_DATA,
         payload,
       });
-      await registerFirebaseToken(firebaseToken);
       navigation.navigate('bookings');
     }
 

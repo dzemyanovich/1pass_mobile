@@ -6,7 +6,7 @@ import Paragraph from '../paragraph';
 import Title from '../title';
 import { clearUserToken } from '../../secure-store-manager';
 import { HIDE_LOADER, RESET_USER_DATA, SHOW_LOADER } from '../../redux/action-types';
-import { deleteFirebaseToken } from '../../api';
+import { signOut as signOutCall } from '../../api';
 import styles from '../../utils/styles';
 import type { NavigationProps } from '../../../custom-types';
 
@@ -19,7 +19,7 @@ export default function ProfileTab({ navigation }: NavigationProps) {
     dispatch({
       type: SHOW_LOADER,
     });
-    await deleteFirebaseToken(firebaseToken);
+    await signOutCall(firebaseToken);
     await clearUserToken();
     dispatch({
       type: RESET_USER_DATA,

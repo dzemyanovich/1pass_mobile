@@ -52,6 +52,7 @@ type UserDataResponse = LambdaResponse<UserData>;
 type SignInRequest = {
   phone: string,
   password: string,
+  firebaseToken: string,
 };
 
 type SignInResponse = LambdaResponse<{
@@ -115,6 +116,7 @@ type SignUpRequest = {
   confirmEmail: string,
   password: string,
   confirmPassword: string,
+  firebaseToken: string,
 };
 
 type SignUpResponse = LambdaResponse<{
@@ -122,12 +124,12 @@ type SignUpResponse = LambdaResponse<{
   userInfo: UserInfo,
 }>;
 
-type FirebaseRequest = {
+type SignOutRequest = {
   firebaseToken: string,
   userToken: string,
 };
 
-type FirebaseResponse = LambdaResponse<void>;
+type EmptyResponse = LambdaResponse<void>;
 
 type ConfirmVisitPayload = {
   bookingId: string;

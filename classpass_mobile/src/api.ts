@@ -12,8 +12,8 @@ export async function getUserData(): Promise<UserDataResponse> {
 }
 
 export async function signIn(request: SignInRequest): Promise<SignInResponse> {
-  const { phone, password } = request;
-  const response: SignInResponse = await post(`${API_URL}/sign-in`, { phone, password });
+  const { phone, password, firebaseToken } = request;
+  const response: SignInResponse = await post(`${API_URL}/sign-in`, { phone, password, firebaseToken });
   if (response.success) {
     await setUserToken(response.data?.token as string);
   }
@@ -45,44 +45,23 @@ export async function completeSignUp(request: SignUpRequest): Promise<SignUpResp
   return response;
 }
 
-export async function registerFirebaseToken(firebaseToken: string): Promise<void> {
+export async function signOut(firebaseToken: string): Promise<void> {
   const userToken: string | null = await getUserToken();
 
   if (!userToken) {
     return;
   }
 
-  const firebaseRequest: FirebaseRequest = {
+  const signOutRequest: SignOutRequest = {
     firebaseToken,
     userToken,
   };
 
-  const registerTokenResponse: FirebaseResponse = await post(`${API_URL}/register-firebase-token`, firebaseRequest);
+  const signOutResponse: EmptyResponse = await post(`${API_URL}/sign-out`, signOutRequest);
 
-  if (!registerTokenResponse.success) {
-    console.error('### error occurred while registering firebase token');
+  if (!signOutResponse.success) {
+    console.error('### error occurred while sign out');
   } else {
-    console.log('### firebase token successfully registed on back-end');
-  }
-}
-
-export async function deleteFirebaseToken(firebaseToken: string): Promise<void> {
-  const userToken: string | null = await getUserToken();
-
-  if (!userToken) {
-    return;
-  }
-
-  const firebaseRequest: FirebaseRequest = {
-    firebaseToken,
-    userToken,
-  };
-
-  const deleteTokenResponse: FirebaseResponse = await post(`${API_URL}/delete-firebase-token`, firebaseRequest);
-
-  if (!deleteTokenResponse.success) {
-    console.error('### error occurred while deleting firebase token');
-  } else {
-    console.log('### firebase token successfully deleted on back-end');
+    console.log('### sign out done');
   }
 }

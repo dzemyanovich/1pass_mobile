@@ -5,7 +5,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import Paragraph from '../paragraph';
 import { getErrorMessages } from '../../utils/utils';
-import { registerFirebaseToken, signIn } from '../../api';
+import { signIn } from '../../api';
 import { HIDE_LOADER, SHOW_ALERT, SHOW_LOADER, UPDATE_USER_DATA } from '../../redux/action-types';
 import styles from '../../utils/styles';
 import type { NavigationProps } from '../../../custom-types';
@@ -33,7 +33,7 @@ export default function SignIn({ navigation }: NavigationProps) {
       type: SHOW_LOADER,
     });
 
-    const response = await signIn({ phone, password });
+    const response = await signIn({ phone, password, firebaseToken });
     if (!response.success) {
       dispatch({
         type: SHOW_ALERT,
@@ -51,7 +51,6 @@ export default function SignIn({ navigation }: NavigationProps) {
         type: UPDATE_USER_DATA,
         payload,
       });
-      await registerFirebaseToken(firebaseToken);
       navigation.navigate('bookings');
     }
 
