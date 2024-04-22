@@ -77,10 +77,9 @@ then `source ~/.bash_profile` to load the config into your current shell
 
 ## Create iOS sharable build / application file
 
-- Create .app file via running command `yarn app-file`
-- location of .app file is `/Users/aliaksei_dzemyanovich/Library/Developer/Xcode/DerivedData/classpass_mobile-bvjrrosyzicblffdqqwtlfvkizsh/Build/Products/Release-iphoneos` so open folder `/Users/aliaksei_dzemyanovich/Library/Developer/Xcode/DerivedData/` and search for required build
-- Convert .app file to .ipa one - https://stackoverflow.com/questions/42110496/how-to-build-ipa-application-for-react-native-ios
-- Share .ipa file via https://www.installonair.com (guideline is https://medium.com/@itskaranzzz/how-to-install-ipa-file-directly-to-iphones-tabs-without-using-laptop-desktop-e645c36125d2)
+- Open XCode
+- Product -> Archive -> Wait...
+- In the opened window "Archives" -> Select latest archive -> Distribute App -> App Store Connect -> Upload -> Automatically manage signing -> Upload
 
 ## Errors
 
