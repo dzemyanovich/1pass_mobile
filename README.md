@@ -81,6 +81,7 @@ then `source ~/.bash_profile` to load the config into your current shell
 - Product -> Archive -> Wait...
 - In the opened window "Archives" -> Select latest archive -> Distribute App -> App Store Connect -> Upload -> Automatically manage signing -> Upload
 - Wait until build is processed and ready for installation via TestFlight
+- https://appstoreconnect.apple.com -> Apps -> TestFlight -> Share build to required people
 - iOS device -> TestFlight -> Install latest version of the app
 
 ## Errors
